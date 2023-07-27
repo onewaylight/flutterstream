@@ -23,20 +23,20 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const CounterStreamPage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class CounterStreamPage extends StatefulWidget {
+  const CounterStreamPage({super.key, required this.title});
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<CounterStreamPage> createState() => _CounterStreamPage();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _CounterStreamPage extends State<CounterStreamPage> {
   int _counter = 0;
   final StreamController<int> _streamController = StreamController();
   final StreamController<bool> _ctrl = StreamController();
@@ -48,6 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
     bool mi = _counter % 2 == 0 ? true : false;
     _ctrl.sink.add(mi);
 
+    // setState를 하느냐 하지 않느냐에 따라 화면상에 렌더링되어지는 것이 달라진다.
+    // 내용없이 이 함수를 사용할 경우 전체 렌더링이 진행됨을 알 수 있다.^^
     setState(() {
       // _counter++;
     });
